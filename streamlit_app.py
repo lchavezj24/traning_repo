@@ -19,7 +19,12 @@ streamlit.dataframe(fruits_to_show)
 
 #New section
 
+streamlit.header('Fruit Advice')
+fruit_choice = streamlit.text_input("Enter fruit" , "Kiwi")
+streamlit.write("fruit chosen", fruit_choice)
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
+
